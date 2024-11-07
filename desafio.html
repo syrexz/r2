@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,">
+    <link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+    <link rel="stylesheet" href="./desafio.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1><b>PROJETO</b></h1>
+    <section id="links"></section>
+    <div class="links">
+        <ul class="tree">
+            <li class="backend">
+                <a href="backend">BackEnd</a>
+                <ul>
+                    <li>
+                        <a href="app">app</a>
+                        <ul>
+                            <li>Produto.js</li>
+                            <li>usuario.js</li>
+                            <li>venda.js</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="config">config</a>
+                        <ul>
+                            <li>banco.js</li>
+                            <li>rotas.js</li>
+                            <li>servidor.js</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="desafio/teste.html">FrontEnd</a>
+                <ul>
+                    <li>
+                        <a href="public">public</a>
+                        <ul>
+                            <li>app.css</li>
+                            <li>app.js</li>
+                            <li>index.html</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+    </div>
+    <script>
+        //... animação
+        document.querySelectorAll('a').forEach(link => {
+            const links = document.getElementById('links')
+
+            link.onclick = function (e) {
+                // essa linha evita que o click dispare um comportamento padrão que o componente link tem
+                e.preventDefault()
+                
+                /* essa linha pega o elemento irmão do elemento que tu clicou, exemplo: 
+                tu clicou no elemento <a href="app">app</a> na tela, ele vai pegar o pŕoximo elemento que é irmão dele,
+                nesse caso ele vai pegar:
+
+                <ul>
+                    <li>Produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+                
+                Como tu ta dentro de um laço de repetição aqui, isso vai acontecer pra todo link que tu clicar
+                
+                */
+                const ul = e.target.nextElementSibling;
+
+
+                /* 
+                
+                    Essa linha verifica se o elemento que tu pegou ali em cima, tem uma classe css chamada show ou hide, 
+                    se tiver ele remove a classe show e adiciona a classe hide, se não tiver ele remove a classe hide e adiciona a classe show
+
+                    Se tu olhar lá no arquivo css, eu adicionei estilos quando essas classes forem usadas, olha no arquivo desafios.css
+
+                    Resumindo, com esse código toda vez que tu clicar num link, ele vai esconder ou mostrar a listagem que dá depois dele :)
+
+
+                    Era isso que tu precisava ?
+                */
+                if(!ul.classList.contains('show') &&  !ul.classList.contains('hide') || ul.classList.contains('show')) {
+                    ul.classList.remove('show')
+                    ul.classList.add('hide')
+                } else {
+                    ul.classList.remove('hide')
+                    ul.classList.add('show')
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
